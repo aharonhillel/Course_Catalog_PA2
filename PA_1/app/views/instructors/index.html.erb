@@ -1,33 +1,27 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Instructors") %>
+<h3>Instructors</h3>
+  <p style="margin-left:20px;">In alphabetical order across</p>
+  <hr>
 
-<h1>Instructors</h1>
+  <% @instructors.each_slice(3) do |instructors| %>
+  <div class="row instrucor_row">
+    <% instructors.each do |individual_instructor| %>
+      <div class="col-md-4 center-block text-center">
+        <img src="https://www.gravatar.com/avatar/HASH" class="center-block"/>
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Middle name</th>
-      <th>Lsat name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @instructors.each do |instructor| %>
-      <tr>
-        <td><%= instructor.first_name %></td>
-        <td><%= instructor.middle_name %></td>
-        <td><%= instructor.lsat_name %></td>
-        <td><%= instructor.email %></td>
-        <td><%= link_to 'Show', instructor %></td>
-        <td><%= link_to 'Edit', edit_instructor_path(instructor) %></td>
-        <td><%= link_to 'Destroy', instructor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <br/>
+        <%= link_to "#{individual_instructor.first_name}", individual_instructor %>
+
+        <%= individual_instructor.middle_name %>
+        <%= individual_instructor.lsat_name %>
+            <br/>
+        <%= mail_to "#{individual_instructor.email}", individual_instructor.email %>
+
+
+      </div>
+
+
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Instructor', new_instructor_path %>
+  </div>
+<% end %>

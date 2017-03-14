@@ -1,34 +1,28 @@
 
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Courses") %>
+<h3>Courses</h3>
+  <p style="margin-left:20px;">In alphabetical order</p>
+  <hr>
 
-<h1>Courses</h1>
+  <% @courses.each do |course| %>
+  <div class="row individual_course">
+      <%= link_to "#{course.name}", course %>
+      <br/>
+       <div class="col-md-10 offset-md-2"><%= course.description %> - <%= course.code %></div>
+       <div class="col-md-10 offset-md-2">
+         Independent Study:
+<% if course.independent_study == true %>
+<%= link_to fa_icon("check")%> <!-- font awesome -->
+<% else%>
+<%= link_to fa_icon("times")%>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Independent study </th>
-      <th>Name </th>
-      <th>Code </th>
-      <th>Credits </th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.independent_study %></td>
-        <td><%= course.name %></td>
-        <td><%= course.code %></td>
-        <td><%= course.credits %></td>
-        <td><%= course.description %></td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+
+
+
+
+  </div>
+  <% end %>
