@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :instructors
   resources :courses
   resources :subjects
-  root 'users#new'
+root "sessions#new"
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
