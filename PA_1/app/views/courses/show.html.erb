@@ -25,5 +25,9 @@
   <%= @course.description %>
 </p>
 
+
+<% courses.each do |one_course| %>
+<%= one_course.name %>
+<% end %>
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
