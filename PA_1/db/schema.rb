@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314194322) do
+ActiveRecord::Schema.define(version: 20170319214450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,26 +23,22 @@ ActiveRecord::Schema.define(version: 20170314194322) do
     t.text     "description"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_courses_on_user_id", using: :btree
   end
 
-  create_table "event_tags", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "tag_id"
+  create_table "courses_subjects", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "name"
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "location"
-    t.datetime "start"
-    t.datetime "end"
-    t.integer  "price"
-    t.integer  "host_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "enrollments", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -54,32 +50,11 @@ ActiveRecord::Schema.define(version: 20170314194322) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "interests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "tag_id"
-    t.integer  "rank"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "rsvps", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.integer  "choice"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "subject_type_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +66,5 @@ ActiveRecord::Schema.define(version: 20170314194322) do
     t.string   "password_digest"
   end
 
+  add_foreign_key "courses", "users"
 end

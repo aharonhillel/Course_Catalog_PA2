@@ -3,8 +3,10 @@ require 'json'
 def seed_courses
 	json_seed = JSON.parse(File.read('db/json_seed/course.json'))
 
-	json_seed.each do |c|
-		Course.create(independent_study: c["independent_study"], name: c["name"],  code: c["code"],  credits: c["credits".to_i], description: c["description"])
+	json_seed.each do |course|
+
+		Course.create(independent_study: course["independent_study"], name: course["name"],  code: course["code"],  credits: c["credits".to_i], description: c["description"])
+
 	end
 end
 

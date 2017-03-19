@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :enrollments
+  resources :courses_subjects
   get 'sessions/new'
 
   get 'users/new'
