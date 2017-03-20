@@ -5,12 +5,12 @@
       <h1>
         <p>
           <%= gravatar_for @user %>
-          <strong>First name:</strong>
+          <strong>First Name:</strong>
           <%= @user.first_name %>
         </p>
 
         <p>
-          <strong>Last name:</strong>
+          <strong>Last Name:</strong>
           <%= @user.last_name %>
         </p>
 
@@ -21,10 +21,14 @@
       </h1>
 </div>
 <h2 class="text-center">My Courses </h2>
+
       <% Enrollment.where(user_id: current_user.id).each do |courses| %>
-      <div class="row individual_course">
-      <%=Course.find(courses.course_id).name%> - <%=Course.find(courses.course_id).code%>
-      <p> <%=Course.find(courses.course_id).description %>
+             <div class="row individual_course">
+        <% c = Course.find(courses.course_id) %>
+          <%=c.id%>
+          <%=c.name%>
+      <%=c.name%> - <%=c.code%>
+      <p> <%=c.description %>
         <div class="col-md-2">
           <td><%= button_to 'Un-Enroll', courses, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default", :unique => true  %></td>
     </div>

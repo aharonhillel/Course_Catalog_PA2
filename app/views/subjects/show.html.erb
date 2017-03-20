@@ -7,6 +7,7 @@
 <% CoursesSubject.where(subject_id: @subject.id).each do |courses| %>
 <% course = Course.find(courses.course_id)%>
 <div class="row individual_course">
+    <p><%= courses.id %></p>
     <%= link_to course.name, course %>
     -
     <%=course.code%>
@@ -23,7 +24,7 @@
     <%= link_to fa_icon('times') %>
 
 <% end %>
-<%= button_to 'Enroll', {:controller => "enrollments", :action => "create", :course_id => courses.id,  :user_id=> session[:user_id].to_i}, :method=>:post, :class => "btn btn-default", role: "button", :unique => true %>
+<%= button_to 'Enroll', {:controller => "enrollments", :action => "create", :course_id => course.id,  :user_id=> session[:user_id].to_i}, :method=>:post, :class => "btn btn-default", role: "button", :unique => true %>
 </div>
 
 <% end %>

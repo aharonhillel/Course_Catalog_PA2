@@ -9,12 +9,16 @@
     <h2 class="text-center">My Courses </h2>
           <% Enrollment.where(user_id: current_user.id).each do |courses| %>
           <div class="row individual_course">
+            <% if courses.nil? %>
+            <p>FUCK</p>
+            <% else %>
           <%=Course.find(courses.course_id).name%> - <%=Course.find(courses.course_id).code%>
           <p> <%=Course.find(courses.course_id).description %>
             <div class="col-md-2">
-          </div>
+              <td><%= button_to 'Un-Enroll', courses, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default", :unique => true  %></td>
+        </div>
             </div>
-
+<% end %>
           <% end %>
 
 
