@@ -33,6 +33,7 @@ class EnrollmentsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @enrollment.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -46,7 +47,7 @@ class EnrollmentsController < ApplicationController
         format.json { render :show, status: :ok, location: @enrollment }
       else
         format.html { render :edit }
-        format.json { render json: @enrollment.errors, status: :unprocessable_entity }
+        format.json { render json: @enrollment.errors, status: :unprocessable_entity, notice: 'You are already enrolled in this course' }
       end
     end
   end

@@ -1,7 +1,7 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.home_page{
+.not_logged_in{
   margin-left: -90px;
   margin-right:  -90px;
   height: 900px;
@@ -14,4 +14,6 @@
 }
 .logged_in_section{
   padding-top: 50px;
+  background-color: none;
+  background: none;
 }
