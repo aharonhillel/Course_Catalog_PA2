@@ -19,6 +19,12 @@
           <%= @user.email %>
         </p>
       </h1>
+
+      <% Enrollment.where(user_id: current_user.id).each do |courses| %>
+      <%=Course.find(courses.course_id).name%> - <%=Course.find(courses.course_id).code%>
+      <br/>
+      <% end %>
+
     </section>
   </aside>
 </div>

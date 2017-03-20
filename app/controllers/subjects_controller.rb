@@ -3,9 +3,10 @@ class SubjectsController < ApplicationController
 
   # GET /subjects
   # GET /subjects.json
-  def index
-    @subjects = Subject.all
-  end
+
+    def index
+      @subjects = Subject.all.order('name ASC')
+    end
 
   # GET /subjects/1
   # GET /subjects/1.json

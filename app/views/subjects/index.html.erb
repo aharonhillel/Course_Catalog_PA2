@@ -1,29 +1,15 @@
+<% provide(:title, "Subjects") %>
 <p id="notice"><%= notice %></p>
 
-<h1>Subjects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Subject type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h3>Subjects</h3>
+  <p style="margin-left:20px;">In Alphabetical order across</p>
+  <hr>
 
-  <tbody>
-    <% @subjects.each do |subject| %>
-      <tr>
-        <td><%= subject.name %></td>
-        <td><%= subject.subject_type_id %></td>
-        <td><%= link_to 'Show', subject %></td>
-        <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-        <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <% @subjects.each_slice(3) do |subject| %>
+  <div class="row">
+    <% subject.each do |one_subject| %>
+      <div class="col-md-4"><%= link_to "#{one_subject.name}", one_subject %></div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Subject', new_subject_path %>
+  </div>
+<% end %>

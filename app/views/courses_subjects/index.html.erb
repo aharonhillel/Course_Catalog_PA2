@@ -14,8 +14,8 @@
   <tbody>
     <% @courses_subjects.each do |courses_subject| %>
       <tr>
-        <td><%= courses_subject.course_id %></td>
-        <td><%= courses_subject.subject_id %></td>
+        <td><%= Course.find(courses_subject.course_id).name %></td>
+        <td><%= Subject.find(courses_subject.subject_id).name %></td>
         <td><%= link_to 'Show', courses_subject %></td>
         <td><%= link_to 'Edit', edit_courses_subject_path(courses_subject) %></td>
         <td><%= link_to 'Destroy', courses_subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
