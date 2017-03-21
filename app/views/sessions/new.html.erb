@@ -10,7 +10,7 @@
           <% Enrollment.where(user_id: current_user.id).each do |courses| %>
           <div class="row individual_course">
             <% if courses.nil? %>
-            <p>FUCK</p>
+
             <% else %>
           <%=Course.find(courses.course_id).name%> - <%=Course.find(courses.course_id).code%>
           <p> <%=Course.find(courses.course_id).description %>

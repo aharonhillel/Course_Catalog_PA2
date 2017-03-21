@@ -1,6 +1,7 @@
 module CoursesHelper
 
   def display_loop(courses)
+  
 string = ""
   @courses.each do |course|
      string + <<-eos "<div class='row individual_course'>"

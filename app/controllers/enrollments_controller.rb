@@ -28,7 +28,7 @@ class EnrollmentsController < ApplicationController
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to @enrollment, notice: 'Enrollment was successfully created.' }
+        format.html { redirect_to current_user, notice: 'Enrollment was successfully created.' }
         format.json { render :show, status: :created, location: @enrollment }
       else
         format.html { render :new }
@@ -54,10 +54,11 @@ class EnrollmentsController < ApplicationController
 
   # DELETE /enrollments/1
   # DELETE /enrollments/1.json
+
   def destroy
     @enrollment.destroy
     respond_to do |format|
-      format.html { redirect_to enrollments_url, notice: 'Enrollment was successfully destroyed.' }
+      format.html { redirect_to current_user, notice: 'You are offically Un-enrolled.' }
       format.json { head :no_content }
     end
   end

@@ -7,6 +7,13 @@ class CoursesController < ApplicationController
     @courses = Course.all.order('name ASC')
   end
 
+def search
+  if params[:search]
+    @courses = Course.where("lower(name) LIKE ?", "%#{params[:search].downcase}%").order('id DESC')
+  else
+    @courses = Course.all.order('created_at DESC')
+  end
+end
   # GET /courses/1
   # GET /courses/1.json
   def show
