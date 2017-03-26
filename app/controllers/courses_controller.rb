@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  # before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
   # GET /courses.json
@@ -7,20 +7,8 @@ class CoursesController < ApplicationController
     @courses = Course.all.order('name ASC')
   end
 
-def search
-  if params[:subject][:id]
-     @a = CoursesSubject.where{:subject_id == params[:subject][:id]}
-     debugger
-    @courses =  @courses.search(params[:search]).order(:name)
-  else
-    if params[:search]
-      @courses = Course.where("lower(name) LIKE ?",  "%#{params[:search].downcase}%").order('id DESC', )
-    else
-    @courses = Course.all.order('created_at DESC')
-  end
-end
-end
-  # GET /courses/1
+
+      # GET /courses/1
   # GET /courses/1.json
   def show
   end
@@ -82,6 +70,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:independent_study, :name, :code, :credits, :description)
+      params.permit(:independent_study, :name, :code, :credits, :description)
     end
 end

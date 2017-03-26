@@ -1,17 +1,18 @@
+
+<% provide(:title, "Courses") %>
 <p id="notice"><%= notice %></p>
 
 <h1 class="text-center">
     <%= @subject.name %>
 </h1>
 
- <% @subject.courses.each do |c| %>
- <% c.name %>
- <% end %>
+ <% @subject.courses.each do |course| %>
+<%= print_courses(course) %>
 <!--
-<% CoursesSubject.where(subject_id: @subject.id).each do |courses| %>
-<% course = Course.find(courses.course_id)%>
+
+
 <div class="row individual_course">
-    <p><%= courses.id %></p>
+  <p> <%=course.id%>
     <%= link_to course.name, course %>
     -
     <%=course.code%>
@@ -28,9 +29,11 @@
     <%= link_to fa_icon('times') %>
 
 <% end %>
-<%= button_to 'Enroll', {:controller => "enrollments", :action => "create", :course_id => course.id,  :user_id=> session[:user_id].to_i}, :method=>:post, :class => "btn btn-default", role: "button", :unique => true %>
-</div>
 
-<% end %> -->
+<%= enroll_unenroll_buttons(course)%>
+</div> -->
+<% end %>
+
+
 <%= link_to 'Back', subjects_path %>
 </div>

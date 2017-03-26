@@ -1,0 +1,21 @@
+
+<% provide(:title, "Courses") %>
+
+<div class="container search">
+   <form name="search" action=<%=search_results_path%>>
+
+
+<input type="text" class="form-control" name="search" placeholder="Search" />
+
+
+
+             <form class="form-horizontal" role="form">
+
+                 <label for="filter">Filter by Subject</label>
+                 <%= collection_select :subject, :id, Subject.all.sort_by{|n| n.name}, :id, :name%>
+
+               <button type="submit" class="btn btn-primary search-button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+             </form>
+
+</form>
+</div>

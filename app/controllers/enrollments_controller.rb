@@ -1,5 +1,5 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
+  # before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
 
   # GET /enrollments
   # GET /enrollments.json
@@ -7,19 +7,12 @@ class EnrollmentsController < ApplicationController
     @enrollments = Enrollment.all
   end
 
-  # GET /enrollments/1
-  # GET /enrollments/1.json
-  def show
-  end
 
   # GET /enrollments/new
   def new
     @enrollment = Enrollment.new
   end
 
-  # GET /enrollments/1/edit
-  def edit
-  end
 
   # POST /enrollments
   # POST /enrollments.json
@@ -28,8 +21,9 @@ class EnrollmentsController < ApplicationController
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to current_user, notice: 'Enrollment was successfully created.' }
+        format.html { redirect_to courses, notice: 'Enrollment was successfully created.' }
         format.json { render :show, status: :created, location: @enrollment }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @enrollment.errors, status: :unprocessable_entity }
