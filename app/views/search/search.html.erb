@@ -6,15 +6,17 @@
    <form name="search" remote: "true" action=<%=search_results_path%>>
 
 
-<input type="text" class="form-control" name="search" placeholder="Search" onkeyup:"AJAXSearchForm();") />
+<input type="text" class="form-control" name="search" placeholder="Search" onkeyup:"$("form").serialize()") />
 
              <form class="form-horizontal" role="form" remote: "true">
 
 
                  <label for="filter">Filter by Subject</label>
-                 <%= collection_select :subject, :id, Subject.all.sort_by{|n| n.name}, :id, :name, {:class=> 'form-control'}, {onchange:"AJAXSearchForm();"}%>
 
-               <button type="submit" class="btn btn-primary search-button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                 <%= collection_select :subject, :id, Subject.all.sort_by{|n| n.name}, :id, :name, {:include_blank => "All Subjects
+                   "}, {onchange:"AJAXSearchForm();"}%>
+                 <%= text_field_tag :search, "", onkeyup: '$("#button-submit").click();' %>
+               <button type="submit", id ="button-submit", class="btn btn-primary search-button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
              </form>
 <div id="search_results">
 
