@@ -5,16 +5,17 @@ class SearchController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all.order('name ASC')
+    @courses = Course.all
   end
 
   def search_results
-      if params[:subject][:id]
+    @courses = Course.all
+      if params[:subject][:id] != ""
         @courses = Subject.find(params[:subject][:id]).courses
         if params[:search]
         @courses = @courses.where("name ILIKE ? OR code ILIKE ? OR description ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").order("code")
         end
-      elsif params[:search]
+      elsif params[:search] != ""
           @courses = @courses.where("name ILIKE ? OR code ILIKE ? OR description ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%").order("code")
       else
         @courses = @courses
