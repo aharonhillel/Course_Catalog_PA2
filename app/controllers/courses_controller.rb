@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  # before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
   # GET /courses.json
@@ -7,8 +7,7 @@ class CoursesController < ApplicationController
     @courses = Course.all.order('name ASC')
   end
 
-
-      # GET /courses/1
+  # GET /courses/1
   # GET /courses/1.json
   def show
   end
@@ -70,6 +69,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.permit(:independent_study, :name, :code, :credits, :description)
+      params.require(:course).permit(:independent_study, :name, :code, :credits, :description)
     end
 end
