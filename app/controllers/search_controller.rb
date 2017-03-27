@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  require 'json'
   # before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
@@ -18,6 +19,9 @@ class SearchController < ApplicationController
       else
         @courses = @courses
       end
+      respond_to do |format|
+          format.js
+        end
     end
 
 

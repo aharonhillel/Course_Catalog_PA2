@@ -2,20 +2,21 @@
 <% provide(:title, "Courses") %>
 
 <div class="container search">
-   <form name="search" action=<%=search_results_path%>>
+
+   <form name="search" remote: "true" action=<%=search_results_path%>>
 
 
-<input type="text" class="form-control" name="search" placeholder="Search" />
+<input type="text" class="form-control" name="search" placeholder="Search" onkeyup:"AJAXSearchForm();") />
 
+             <form class="form-horizontal" role="form" remote: "true">
 
-
-             <form class="form-horizontal" role="form">
 
                  <label for="filter">Filter by Subject</label>
-                 <%= collection_select :subject, :id, Subject.all.sort_by{|n| n.name}, :id, :name%>
+                 <%= collection_select :subject, :id, Subject.all.sort_by{|n| n.name}, :id, :name, {:class=> 'form-control'}, {onchange:"AJAXSearchForm();"}%>
 
                <button type="submit" class="btn btn-primary search-button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
              </form>
+<div id="search_results">
 
-</form>
+
 </div>
