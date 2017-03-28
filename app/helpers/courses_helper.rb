@@ -16,7 +16,7 @@ string <<  "<div class='row individual_course'>"
 
   end
 
-string<<  "<= enroll_unenroll_buttons(course) %>"
+string<<  "<%= enroll_unenroll_buttons(course) %>"
 string<<  "</div>"
 
   string.html_safe

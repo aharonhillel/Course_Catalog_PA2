@@ -1,39 +1,35 @@
-
-<% provide(:title, "Courses") %>
+<% provide(:title, "#{@subject.name}") %>
 <p id="notice"><%= notice %></p>
 
 <h1 class="text-center">
     <%= @subject.name %>
 </h1>
 
- <% @subject.courses.each do |course| %>
-<%= print_courses(course) %>
-<!--
-
-
+<% @subject.courses.each do |course| %>
 <div class="row individual_course">
-  <p> <%=course.id%>
-    <%= link_to course.name, course %>
-    -
-    <%=course.code%>
-    <br/>
-
     <p>
-        <%=course.description%></p>
+        <%=course.id%>
+        <%= link_to course.name, course %>
+        -
+        <%=course.code%>
+        <br/>
 
-    Independent Study:
+        <p>
+            <%=course.description%></p>
 
-    <% if course.independent_study == true %>
-    <%= link_to fa_icon('check') %>
-<% else %>
-    <%= link_to fa_icon('times') %>
+        Independent Study:
+
+        <% if course.independent_study == true %>
+        <%= link_to fa_icon('check') %>
+    <% else %>
+        <%= link_to fa_icon('times') %>
+
+        <% end %>
+
+        <%= enroll_unenroll_buttons(course)%>
+    </div>
 
 <% end %>
-
-<%= enroll_unenroll_buttons(course)%>
-</div> -->
-<% end %>
-
 
 <%= link_to 'Back', subjects_path %>
 </div>

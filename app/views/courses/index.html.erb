@@ -1,38 +1,36 @@
-
 <% provide(:title, "Courses") %>
 <h3>Courses</h3>
-  <p style="margin-left:20px;">In alphabetical order</p>
-  <hr>
+<p style="margin-left:20px;">In alphabetical order</p>
+<hr>
 <div class="container">
 
-   <% @courses.each do |course| %>
+    <% @courses.each do |course| %>
 
+    <div class="row individual_course">
+        <p>
+            <%=course.id%>
+            <%= link_to course.name, course %>
+            -
+            <%=course.code%>
+            <br/>
 
+            <p>
+                <%=course.description%></p>
 
+            Independent Study:
 
-  <div class="row individual_course">
-    <p> <%=course.id%>
-      <%= link_to course.name, course %>
-      -
-      <%=course.code%>
-      <br/>
+            <% if course.independent_study == true %>
+            <%= link_to fa_icon('check') %>
+        <% else %>
+            <%= link_to fa_icon('times') %>
 
-      <p>
-          <%=course.description%></p>
+            <% end %>
 
-      Independent Study:
-
-      <% if course.independent_study == true %>
-      <%= link_to fa_icon('check') %>
-  <% else %>
-      <%= link_to fa_icon('times') %>
-
-  <% end %>
-
-  <%= enroll_unenroll_buttons(course)%>
-  </div>
-  <% end %>
-
-
-  <%= link_to 'Back', subjects_path %>
-  </div>
+            <%= enroll_unenroll_buttons(course)%>
+        </div>
+        <% end %>
+        <div class="text-center">
+<%= will_paginate  %>
+</div>
+        <%= link_to 'Back', subjects_path %>
+    </div>

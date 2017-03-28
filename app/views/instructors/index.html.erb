@@ -1,28 +1,24 @@
 <% provide(:title, "Instructors") %>
 <h3>Instructors</h3>
-  <p style="margin-left:20px;">In alphabetical order across</p>
-  <hr>
+<p style="margin-left:20px;">In alphabetical order across</p>
+<hr>
 
-
-  <% @instructors.each_slice(3) do |instructors| %>
-  <div class="row instrucor_row">
+<% @instructors.each_slice(3) do |instructors| %>
+<div class="row instrucor_row">
     <% instructors.each do |individual_instructor| %>
-      <div class="col-md-4 center-block text-center">
+    <div class="col-md-4 center-block text-center">
         <img src="https://www.gravatar.com/avatar/HASH" class="center-block"/>
-
 
         <br/>
         <%= link_to "#{individual_instructor.first_name}", individual_instructor %>
 
         <%= individual_instructor.middle_name %>
         <%= individual_instructor.lsat_name %>
-            <br/>
+        <br/>
         <%= mail_to "#{individual_instructor.email}", individual_instructor.email %>
 
-
-      </div>
-
+    </div>
 
     <% end %>
-  </div>
+</div>
 <% end %>

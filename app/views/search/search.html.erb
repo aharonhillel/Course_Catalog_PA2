@@ -1,22 +1,17 @@
-
-<% provide(:title, "Courses") %>
-
+<% provide(:title, "Search") %>
 <div class="container search">
-  <div class="search-title text-center">
-  <h1> Search for Courses</h1>
-  <h3 style="color: grey; padding-bottom:20px;">Search by subject as well as course name or description</h3>
-</div>
+    <div class="search-title text-center">
+        <h1>
+            Search for Courses</h1>
+        <h3 style="color: grey; padding-bottom:20px;">Search by subject as well as course name or description</h3>
+    </div>
 
-   <form name="search" remote: "true" action=<%=search_results_path%>>
-                 <label for="filter">Filter by Subject</label>
-                <%#= text_field_tag(:search, value ="",class: "form-control",  onkeyup:"AJAXSearchForm();") %>
-                 <%= collection_select :subject, :id, Subject.all.sort_by{|n| n.name}, :id, :name, {:include_blank => "All Subjects"}, {onchange:"AJAXSearchForm();"}%>
-                 <br/> <br/>
-                 <label for="filter">Please click outside this box for your results</label>
-                 <%= text_field_tag :search, "",  :placeholder=>'Enter a Course and then click outside this input area', class:"form-control", onchange: 'AJAXSearchForm();' %>
-
-             </form>
-<div id="search_results">
-
-
-</div>
+    <form name="search" remote: "true" action=<%=search_results_path%>>
+        <label for="filter">Filter by Subject</label>
+        <%= collection_select :subject, :id, Subject.all.sort_by{|n| n.name}, :id, :name, {:include_blank => "All Subjects"}, {onchange:"AJAXSearchForm();"}%>
+        <br/>
+        <br/>
+        <label for="filter">Please click outside this box for your results</label>
+        <%= text_field_tag :search, "",  :placeholder=>'Enter a Course and then click outside this input area', class:"form-control", onchange: 'AJAXSearchForm();' %>
+    </form>
+    <div id="search_results"></div>

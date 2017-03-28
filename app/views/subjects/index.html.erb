@@ -1,15 +1,14 @@
 <% provide(:title, "Subjects") %>
 <p id="notice"><%= notice %></p>
 
-
 <h3>Subjects</h3>
-  <p style="margin-left:20px;">In Alphabetical order across</p>
-  <hr>
+<p style="margin-left:20px;">In Alphabetical order across</p>
+<hr>
 
-  <% @subjects.each_slice(3) do |subject| %>
-  <div class="row">
+<% @subjects.each_slice(3) do |subject| %>
+<div class="row">
     <% subject.each do |one_subject| %>
-      <div class="col-md-4"><%= link_to "#{one_subject.name}", one_subject %></div>
+    <div class="col-md-4"><%= link_to "#{one_subject.name}", one_subject %></div>
     <% end %>
-  </div>
+</div>
 <% end %>
