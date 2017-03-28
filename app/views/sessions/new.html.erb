@@ -7,11 +7,13 @@
 
     <h3 class="text-center">Welcome Back!</h3>
     <h2 class="text-center">My Courses </h2>
+    <% if current_user.courses.count == 0 %>
+      <h3 class="text-center" style="color:grey; padding-top:30px;">You have no courses. Add some!</h3>
+    <% else %>
           <% Enrollment.where(user_id: current_user.id).each do |courses| %>
           <div class="row individual_course">
-            <% if courses.nil? %>
 
-            <% else %>
+
           <%=Course.find(courses.course_id).name%> - <%=Course.find(courses.course_id).code%>
           <p> <%=Course.find(courses.course_id).description %>
             <div class="col-md-2">
